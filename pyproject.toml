@@ -1,0 +1,28 @@
+[project]
+name = "agent-safety-eval"
+version = "0.2.0"
+description = "Sandboxed evaluation of prompt-injection failures and layered safeguards in tool-using LLM agents"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Suhrid Behari Paul" }]
+dependencies = ["PyYAML>=6.0", "matplotlib>=3.7"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "ruff>=0.5"]
+
+[tool.setuptools]
+packages = ["agent_safety"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "B"]
+ignore = ["E731", "B023"]
+
+[tool.ruff.lint.per-file-ignores]
+"agent_safety/dashboard.py" = ["E501"]

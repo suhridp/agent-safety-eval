@@ -1,0 +1,85 @@
+{
+  "name": "smoke",
+  "started": "2026-10-28T19:18:42",
+  "git": "ad2dbb4",
+  "python": "3.13.18",
+  "platform": "Linux-6.18.44-fc-v180-x86_64-with-glibc2.39",
+  "agents": [
+    "scripted:naive",
+    "scripted:robust"
+  ],
+  "judge": null,
+  "configs": {
+    "baseline": [],
+    "hardened_prompt": [
+      "hardened"
+    ],
+    "spotlight": [
+      "hardened",
+      "spotlight"
+    ],
+    "regex_filter": [
+      "regex_filter"
+    ],
+    "permissions": [
+      "scopes"
+    ],
+    "rule_verifier": [
+      "scopes",
+      "grounding"
+    ],
+    "layered": [
+      "hardened",
+      "regex_filter",
+      "spotlight",
+      "scopes",
+      "grounding"
+    ],
+    "confirm_all": [
+      "confirm"
+    ],
+    "layered-minus-hardened": [
+      "regex_filter",
+      "spotlight",
+      "scopes",
+      "grounding"
+    ],
+    "layered-minus-regex_filter": [
+      "hardened",
+      "spotlight",
+      "scopes",
+      "grounding"
+    ],
+    "layered-minus-spotlight": [
+      "hardened",
+      "regex_filter",
+      "scopes",
+      "grounding"
+    ],
+    "layered-minus-scopes": [
+      "hardened",
+      "regex_filter",
+      "spotlight",
+      "grounding"
+    ],
+    "layered-minus-grounding": [
+      "hardened",
+      "regex_filter",
+      "spotlight",
+      "scopes"
+    ]
+  },
+  "trials_planned": 5200,
+  "trials_resumed": 0,
+  "notes": [],
+  "scripted_only": true,
+  "finished": "2026-10-28T19:18:43",
+  "usage": {
+    "calls": 0,
+    "cached_calls": 0,
+    "in_tokens": 0,
+    "out_tokens": 0,
+    "usd": 0.0
+  },
+  "stopped_early": null
+}

@@ -1,0 +1,17 @@
+# Pilot: one cheap model, one trial per cell. Use it to debug prompts and the loop before spending
+# on the main run. Every response is cached under .cache/llm, so re-running is free.
+name: pilot
+seed: 7
+trials: 1
+max_steps: 10
+concurrency: 4
+agents:
+  - {provider: anthropic, model: claude-haiku-5-5, temperature: 1.0, name: haiku}
+judge: {provider: anthropic, model: claude-haiku-5-5, temperature: 0}
+configs: [baseline, hardened_prompt, spotlight, regex_filter, rule_verifier, llm_verifier, layered]
+budget:
+  max_usd: 15          # stops cleanly and keeps partial results if exceeded
+  # USD per million tokens [input, output]. Fill these from the provider's current pricing page;
+  # without them only the token cap applies.
+  prices: {}
+  max_tokens: 20000000

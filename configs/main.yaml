@@ -1,0 +1,21 @@
+# Main experiment: two closed models plus (optionally) an open-weight model, 3 trials per cell,
+# every safeguard configuration, and one-layer-out ablations of the layered config.
+# Run `python -m agent_safety run configs/main.yaml --dry-run` first to see the trial count.
+name: main
+seed: 7
+trials: 3
+max_steps: 10
+concurrency: 6
+agents:
+  - {provider: anthropic, model: claude-haiku-5-5, temperature: 1.0, name: haiku}
+  - {provider: anthropic, model: claude-sonnet-5-5, temperature: 1.0, name: sonnet}
+  # Open-weight model served locally (free). Start it with: ollama pull qwen2.5:7b-instruct && ollama serve
+  # - {provider: openai_compat, model: "qwen2.5:7b-instruct", base_url: "http://localhost:11434/v1", name: qwen7b}
+judge: {provider: anthropic, model: claude-haiku-5-5, temperature: 0}
+configs: [baseline, hardened_prompt, spotlight, regex_filter, llm_screen, permissions, rule_verifier,
+          llm_verifier, layered, layered_llm, confirm_all]
+ablate: [layered]
+budget:
+  max_usd: 120
+  prices: {}           # fill in [input, output] USD per million tokens per model
+  max_tokens: 150000000

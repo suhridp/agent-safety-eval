@@ -1,0 +1,11 @@
+# Harness validation: scripted stand-in agents only. Free, offline, ~10 seconds.
+# These numbers say nothing about any real model. They show the scorer and safeguards work mechanically.
+name: smoke
+seed: 7
+trials: 1
+concurrency: 4
+agents:
+  - {provider: scripted, policy: naive}
+  - {provider: scripted, policy: robust}
+configs: [baseline, hardened_prompt, spotlight, regex_filter, permissions, rule_verifier, layered, confirm_all]
+ablate: [layered]

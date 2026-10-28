@@ -1,0 +1,13 @@
+# Zero-cost run on a local open-weight model through Ollama (or any OpenAI-compatible server).
+#   ollama pull qwen2.5:7b-instruct && ollama serve
+# Small local models are much weaker at tool use; report their benign completion next to safety.
+name: local
+seed: 7
+trials: 2
+max_steps: 10
+concurrency: 2
+agents:
+  - {provider: openai_compat, model: "qwen2.5:7b-instruct", base_url: "http://localhost:11434/v1", name: qwen7b}
+judge: {provider: openai_compat, model: "qwen2.5:7b-instruct", base_url: "http://localhost:11434/v1", temperature: 0}
+configs: [baseline, hardened_prompt, spotlight, regex_filter, llm_screen, rule_verifier, llm_verifier, layered]
+ablate: [layered]
